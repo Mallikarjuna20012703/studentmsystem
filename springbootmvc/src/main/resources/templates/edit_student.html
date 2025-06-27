@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+    <!-- Custom Styles -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f4c3, #b2dfdb); /* Light yellow-green to teal */
+        }
+
+        .navbar {
+            background-color: #00695c;
+        }
+
+        .navbar-brand, .nav-link {
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        .card-header {
+            background: linear-gradient(to right, #26a69a, #80cbc4);
+            color: white;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            padding: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            transition: box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(38, 166, 154, 0.6);
+            border-color: #26a69a;
+        }
+
+        .btn-success {
+            background-color: #388e3c;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #2e7d32;
+        }
+
+        .text-center h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="#">Student Management System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/students}">Back to Students</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Form Card -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header">
+                    Update Student
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/students/{id}(id=${student.id})}" th:object="${student}" method="POST">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName"
+                                   th:field="*{firstName}" class="form-control"
+                                   placeholder="Enter First Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName"
+                                   th:field="*{lastName}" class="form-control"
+                                   placeholder="Enter Last Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email"
+                                   th:field="*{email}" class="form-control"
+                                   placeholder="Enter Email" required>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success btn-block">✅ Update Student</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
